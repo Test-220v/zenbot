@@ -1,59 +1,21 @@
 <context>
+    <!-- Note that you need to create cities entity in your bot settings -->
+    <pattern name="City" value="entity://cities"/>
 
-    <sample>
-        <item value="Кто такая Алиса"/>
-        <item value="Что такое бот"/>
-    </sample>
+    <input pattern="* (weather|forecast) {[* $Date] [* $City]}">
+        <context id="weather">
+            <!-- This context will automatically extend a root one -->
 
-    <input pattern="* (привет*|здравствуй*) *">
-        <output if="full($UserName)">
-            <item value="Привет, $UserName! Рада снова видеть тебя!"/>
-            <item value="Здравствуй, $UserName! Я уже успела соскучиться..."/>
-        </output>
+            <output value="There is a nice weather today!" if="empty($City)"/>
+            <output value="Looks like it is nice weather in $City!"/>
 
-        <context if="empty($UserName)" id="name">
-            <output value="Привет! Меня зовут Алиса! А это - демонстрация моего навыка, созданного с помощью платформы zenbot. Как тебя зовут?"/>
+            <input>
+                <!-- Once weather context is activated, user can simply ask about different date or city or both of them -->
+                <pattern value="{(* $Date) [* $City]}"/>
+                <pattern value="* $City"/>
 
-            <input pattern="$Text">
-                <var name="UserName" value="cap($Text)" scope="user"/>
-                <output value="Приятно познакомиться, $UserName! Напиши мне что-нибудь."/>
-                <context/>
+                <context id="weather"/> <!-- Jump to the weather context to generate an output -->
             </input>
         </context>
     </input>
-
-    <input pattern="* пока *">
-        <var name="end_session" value="javascript: true"/>
-        <output value="Ну пока, незнакомец!" if="empty($UserName)"/>
-        <output value="Пока-пока, $UserName!"/>
-    </input>
-
-    <input pattern="[* (кто|что) так*] $Text">
-        <context id="name" if="empty($UserName)"/>
-
-        <context id="wiki" if="full($UserName)">
-            <get url="http://ru.wikipedia.org/w/api.php" var="Wiki">
-                <param name="format" value="xml"/>
-                <param name="action" value="opensearch"/>
-                <param name="search" value="$Text"/>
-            </get>
-
-            <var name="Items" value="javascript: $Wiki['SearchSuggestion']['Section']['Item']" if="full($Wiki)" scope="context"/>
-            <var name="Result" value="javascript: $Items[Math.floor(Math.random() * $Items.length)]['Description']['content']" if="full($Items)"/>
-
-            <output if="empty($Result)">
-                <item value='Я поискала в википедии, но ничего не нашла по запросу "$Text"'/>
-                <item value="В википедии ничего не нашлось..."/>
-            </output>
-
-            <output value="$Result" if="full($Result)"/>
-
-            <input pattern="* (еще|другой вариант) *"/>
-
-            <sample value="Другой вариант"/>
-        </context>
-
-
-    </input>
-
 </context>
