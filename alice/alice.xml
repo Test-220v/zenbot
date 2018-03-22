@@ -1,19 +1,8 @@
 <context>
-  <input pattern="* поставь под охрану * [квартиру] [дачу] {[$Text] [$Date] [$Time]}">
+  <input pattern="* поставь под охрану * {[$Date] [$Time]}"> 
             <!-- Jump to the reminder creation if Text and Time have been provided -->
     
-        <context id="reminder" if="full($Text) and full($Time)"/>
-        <!-- Ask for reminder text if it was not provided -->
-        <context if="empty($Text)" modal="true"> <!-- This context is modal because any text must be interpreted as reminder text -->
-            <output value="Какой объект поставить под охрану?"/>
-            <input pattern="$Text">
-                <context id="reminder_time" if="empty($Time)"/> <!-- Ask for the Date and Time -->
-                <context id="reminder"/> <!-- Or create a reminder if the Time was provided -->
-            </input>
-        </context>
-
-        <!-- Ask for the Time if it was not provided -->
-        <context id="reminder_time" if="empty($Time)">
+            <context id="reminder_time" if="empty($Time)">
             <!-- The user may provide both Date and Time -->
             <output value="Когда нужно поставить под охрану объект?" if="empty($Date)"/>
 
