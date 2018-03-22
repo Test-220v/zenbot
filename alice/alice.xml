@@ -1,12 +1,12 @@
 <context>
-  <input pattern="* поставь*на охрану [me] {[[to] $Text] [$Date] [$Time]}">
+  <input pattern="* напомни* [мне] {[[to] $Text] [$Date] [$Time]}">
     <!-- Here Zenbot has created a set of variables for Text, Date and Time -->
 
     <!-- But we have to check if all required of them are defined in user's phrase -->
-    <output value="Объект поставлен под охрану." if="full($Text) and full($Time)"/>
+    <output value="Задание принято." if="full($Text) and full($Time)"/>
 
     <context if="empty($Text)" modal="true">
-      <output value="Когда нужно поставить объект на охрану?"/>
+      <output value="О чем я должна напомнить?"/>
       <input pattern="$Text">
         <!-- Jump to the DateTime context to ask about time and date -->
         <context id="DateTime" if="empty($Time)"/>
