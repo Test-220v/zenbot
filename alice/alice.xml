@@ -1,5 +1,5 @@
 <context>
-  <input pattern="* поставь под охрану * {[[to] $Text] [$Date] [$Time]}">
+  <input pattern="* поставь под охрану * [мою] [квартиру] [дачу] {[[to] $Text] [$Date] [$Time]}">
     <!-- Here Zenbot has created a set of variables for Text, Date and Time -->
 
     <!-- But we have to check if all required of them are defined in user's phrase -->
