@@ -7,7 +7,7 @@
             <output value="Когда нужно поставить под охрану объект?" if="empty($Date)"/>
 
             <!-- Or ask only for the Time if the Date was provided -->
-            <output value="Назовите, пожалуйста, время"/>
+            <output value="Во сколько?"/>
 
             <input>
                 <pattern value="* {(* $Time) [$Date]} *"/>
