@@ -24,7 +24,7 @@
             <var name="Fmt" value='fmt($Date, "EEEE, MMMM dd", $req_lang)' if="full($Date)"/>
 
             <!-- Just response with text, date and time of a new reminder -->
-            <output value='Хорошо, объект будет поставлен под охрану on $Fmt at $Time'/>
+            <output value='Хорошо, объект будет поставлен под охрану в $Fmt at $Time'/>
         </context>
     </input>
 </context>          
