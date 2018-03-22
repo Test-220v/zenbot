@@ -1,17 +1,23 @@
 <context>
-    <input pattern="(hi|hello) *">
-        <!-- Greet the user if we know his/her name -->
-        <output value="Hello $UserName!" if="full($UserName)"/>
+  <input pattern="* поставь*на охрану [me] {[[to] $Text] [$Date] [$Time]}">
+    <!-- Here Zenbot has created a set of variables for Text, Date and Time -->
 
-        <!-- Or activate an inner context to ask the user about his/her name -->
-        <context if="empty($UserName)" modal="true"> <!-- We use a modal context, so our bot will recognize any text as the user’s name -->
-            <output value="Hi! What is your name?"/>
+    <!-- But we have to check if all required of them are defined in user's phrase -->
+    <output value="Объект поставлен под охрану." if="full($Text) and full($Time)"/>
 
-            <input pattern="$Text">
-                <!-- Store the user’s name in the UserName variable with "user" scope to save it into database -->
-                <var name="UserName" value="$Text" scope="user"/>
-                <output value="Nice to meet you, $UserName!"/> <!-- Using the placeholder in output -->
-            </input>
-        </context>
-    </input>
+    <context if="empty($Text)" modal="true">
+      <output value="Когда нужно поставить объект на охрану?"/>
+      <input pattern="$Text">
+        <!-- Jump to the DateTime context to ask about time and date -->
+        <context id="DateTime" if="empty($Time)"/>
+
+        <!-- Or create event here if Time was defined -->
+        <output value="Хорошо! Задание принято!" if="full($Time)"/>
+      </input>
+    </context>
+
+    <context id="DateTime" if="empty($Time)" modal="true">
+      <!-- Ask about time and date here to complete event creation -->
+    </context>
+  </input>
 </context>
