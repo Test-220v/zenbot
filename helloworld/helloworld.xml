@@ -5,6 +5,7 @@
 </input>
 </context>
 
+<context>
 <context id="unknown" if="empty($Tiket)">
         	<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу."/>
 		
@@ -14,3 +15,4 @@
 		</input>
 	
 	</context>
+</context>
