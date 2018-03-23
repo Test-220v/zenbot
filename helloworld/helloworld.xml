@@ -10,9 +10,14 @@
 
             <input pattern="$Text">
                 <var name="UserName" value="cap($Text)" scope="user"/>
-                <output value="Приятно познакомиться, $UserName! Чем я могу быть полезен?"/>
-                <context/>
+                <output value="Приятно познакомиться, $UserName! Я готов записать Ваше обращение!"/>
             </input>
         </context>
-    </input>
+	
+            
+			<input pattern="$Text">
+				<var name="TicketContent" value="cap($Text)" scope="ticket"/>
+				<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист. Хотите оставить еще одно обращение?"/>
+			</input>
+	</input>
 </context>
