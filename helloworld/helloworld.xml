@@ -9,7 +9,6 @@
 			<var name="Ticket" value="cap($Text)" scope="ticket"/>
 			<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист." if="$Ticket"/>
 			<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу." if="empty($Ticket)"/>
-			<context/>
 		</input>
 	</context>
 </context>
