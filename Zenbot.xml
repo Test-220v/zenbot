@@ -1,10 +1,11 @@
-﻿<context>
+<context>
   <input pattern="* (привет|здорово) * [$Person] *">
 
     <context if="empty($Person)">
       <output value="Привет! Как тебя зовут?"/>
       <input pattern="$Person">
-        <context id="username"/>
+			<context id="username">
+			</context>
       </input>
     </context>
 
