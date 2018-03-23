@@ -3,10 +3,12 @@
 	<input pattern="* (привет*|здравствуй|добрый день*) *">
         <output value="Добрый день! Я - электронный помощник Гольфстрим. Как я могу к Вам обращаться?"/>
 
+		<context>
         <input pattern="$Text">
         	<var name="UserName" value="cap($Text)" scope="user"/>
         <output value="Приятно познакомиться, $UserName! Я готов записать Ваше обращение!"/>
         </input>
+		</context>
 	    
 		<context>
 				<input pattern="$Text">
