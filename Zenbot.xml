@@ -1,0 +1,15 @@
+﻿<context>
+  <input pattern="* (привет|здорово) * [$Person] *">
+
+    <context if="empty($Person)">
+      <output value="Привет! Как тебя зовут?"/>
+      <input pattern="$Person">
+        <context id="username"/>
+      </input>
+    </context>
+
+    <context id="приветствие">
+       <output value="Привет!"/>
+    </context>
+  </input>
+</context>
