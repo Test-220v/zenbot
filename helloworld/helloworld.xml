@@ -4,7 +4,7 @@
 	</input>
 
 	
-	<context if="full($Ticket)" id="ticket"
+	<context if="full($Ticket)" id="ticket">
 		<input id="ticket" pattern="* (проблема|не работает) * $Text">
 			<var name="Ticket" value="cap($Text)" scope="ticket"/>
 			<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист." if="$Ticket"/>
