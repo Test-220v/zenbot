@@ -4,11 +4,12 @@
 
 	<context>
 		<input id="ticket" pattern="* (проблема|не работает) * "/>
+			 <var name="Tiket" value="$Text" scope="context"/>
 			<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист." if="ticket"/>
-		<input id="call" pattern="* человек*"/>
-			<output value="Если вы хотите связаться с техподдержкой, позвоните по телефону +7495-983-00-00." if="call"/>
-			
-			<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу."/>
+	
+		<context id="unknown" if="empty($Tiket)">
+        		<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу."/>
 
 	</context>
+</context>
 </context>
