@@ -1,17 +1,16 @@
-
 <context>
 	<input id="приветствие" pattern="* (привет*|здравствуй*|добрый день*) *">
 		<output value="Добрый день! Я - электронный помощник Гольфстрим. Я готов записать Ваше обращение!"/>
-	</input>
-	
-	
-	<input id="ticket" pattern="* (проблема|не работает) * ">
-		<var name="Ticket" value="$Text" scope="ticket"/>
+
+		
+	<context if="empty($Tiket)" id="unknown">
+		<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу."/>
+			
+		<input id="ticket" pattern="* (проблема|не работает) * $Text">
+		<var name="Ticket" value="cap($Text)" scope="ticket"/>
 		<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист." if="$Ticket"/>
 		
-			<context id="unknown" if="empty($Tiket)">
-				<output value="Не понимаю... Пожалуйста, попробуйте переформулировать фразу."/>
-			</context>
-	</input>
-
+		</input>
+	</context>
+</input>
 </context>
