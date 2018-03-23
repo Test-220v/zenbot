@@ -1,6 +1,6 @@
 <context>
 
-    <input pattern="* (привет*|здравствуй|добрый день*) *">
+	<input pattern="* (привет*|здравствуй|добрый день*) *">
         <output if="full($UserName)">
             <item value="Добрый день, $UserName! Чем я могу Вам помочь?"/>
         </output>
@@ -12,12 +12,12 @@
                 <var name="UserName" value="cap($Text)" scope="user"/>
                 <output value="Приятно познакомиться, $UserName! Я готов записать Ваше обращение!"/>
             </input>
-        </context>
-	
-            
-			<input pattern="$Text">
-				<var name="TicketContent" value="cap($Text)" scope="ticket"/>
-				<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист. Хотите оставить еще одно обращение?"/>
-			</input>
-	</input>
+	    
+	    <input pattern="$Text">
+		<var name="TicketContent" value="cap($Text)" scope="ticket"/>
+		<output value="Спасибо за информацию! Я направил ваше обращение в техническую поддержку. В ближайшее время с вами свяжется наш специалист. Хотите оставить еще одно обращение?"/>
+	    </input>
+		
+	</context>
+		
 </context>
