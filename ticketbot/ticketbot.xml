@@ -6,7 +6,7 @@
         </output>
 
         <context if="empty($UserName)" id="name">
-            <output value="Добрый день! Я - электронный помощник Гольфстрим. Как я могу к Вам обращаться"/>
+            <output value="Добрый день! Я - электронный помощник Гольфстрим. Как я могу к Вам обращаться?"/>
 
             <input pattern="$Text">
                 <var name="UserName" value="cap($Text)" scope="user"/>
@@ -16,13 +16,13 @@
         </context>
     </input>
 
-    <input pattern="* (пока|хватит) *">
-        <var name="end_session" value="javascript: true"/>
+    <input pattern="* (пока|хватит|до свидан*) *">
+        <var name="end_session" value="true"/>
         <output value="Всего доброго!" if="empty($UserName)"/>
         <output value="До свидания, $UserName!"/>
     </input>
 
-    <input pattern="* (проблема|не работает) * $Text">
+    <input pattern="* (проблема|не работа*|*лома*) * $Text">
         <context id="name" if="empty($UserName)"/>
 
         <context id="ticket" if="full($UserName)">
